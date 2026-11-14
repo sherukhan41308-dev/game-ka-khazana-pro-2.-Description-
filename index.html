@@ -65,4 +65,54 @@ async function startRecording(){const s=document.getElementById('recordStatus');
 function stopRecording(){if(recorder&&recorder.state!=='inactive'){recorder.stop();document.getElementById('recordBtn').disabled=false;document.getElementById('stopBtn').disabled=true}}
 renderGames();
 </script>
+ <div id="ifg-game" style="position:relative;background:#101820;color:white;padding:15px;border-radius:14px;text-align:center;font-family:Arial;min-height:400px;overflow:hidden">
+<h2>🇮🇳 INDIAN FAMILY GAME</h2>
+<p>अपनी भारतीय दुनिया में आपका स्वागत है!</p>
+<div id="ifg-menu">
+<button onclick="ifgStart('Free Roam')">🌆 Free Roam</button>
+<button onclick="ifgStart('Missions')">🎯 Missions Mode</button>
+<button onclick="ifgStart('Family Life')">🏠 Family Life</button>
+<button onclick="ifgStart('India Explore')">🇮🇳 India Explore</button>
+<button onclick="ifgStart('Online')">🌐 Online Mode</button>
+</div>
+<div id="ifg-world" style="display:none">
+<h3 id="ifg-mode">Free Roam</h3>
+<div id="ifg-scene" style="height:230px;background:linear-gradient(#70b9e9 0%,#d7e9e9 65%,#555 66%);position:relative;overflow:hidden">
+<div style="position:absolute;bottom:0;width:100%;height:75px;background:#444"></div>
+<div style="position:absolute;bottom:75px;left:5%;width:25%;height:90px;background:#c68c56"></div>
+<div style="position:absolute;bottom:75px;right:5%;width:25%;height:110px;background:#b5a17d"></div>
+<div style="position:absolute;bottom:75px;left:37%;width:26%;height:125px;background:#eee;color:#a77;text-align:center;padding-top:10px;box-sizing:border-box">TAJ MAHAL<br>🏛️</div>
+<div id="ifg-car" style="position:absolute;bottom:12px;left:42%;font-size:42px;transition:left .2s">🚙</div>
+</div>
+<p id="ifg-status">शहर में आपका स्वागत है!</p>
+<button onclick="ifgMove(-1)">⬅️</button>
+<button onclick="ifgMove(1)">➡️</button>
+<button onclick="ifgMove(0)">🏛️ ताजमहल</button>
+<br><br><button onclick="ifgBack()">मुख्य मेन्यू</button>
+</div>
+</div>
+<style>
+#ifg-game button{background:#e5a52c;color:#171717;border:0;border-radius:9px;padding:12px;margin:5px;font-weight:bold;font-size:14px}
+#ifg-menu{display:flex;flex-wrap:wrap;justify-content:center;margin-top:35px}
+</style>
+<script>
+let ifgPosition=42;
+function ifgStart(mode){
+document.getElementById('ifg-menu').style.display='none';
+document.getElementById('ifg-world').style.display='block';
+document.getElementById('ifg-mode').textContent=mode;
+document.getElementById('ifg-status').textContent=mode+' शुरू हो गया!';
+}
+function ifgMove(dir){
+if(dir===0){document.getElementById('ifg-status').textContent='आप ताजमहल पहुँच गए!';return}
+ifgPosition=Math.max(5,Math.min(85,ifgPosition+dir*5));
+document.getElementById('ifg-car').style.left=ifgPosition+'%';
+l.getElementById('ifg-status').textContent='आप शहर में घूम रहे हैं!';
+}
+function ifgBack(){
+document.getElementById('ifg-world').style.display='none';
+document.getElementById('ifg-menu').style.display='flex';
+}
+</script>
+ 
 </body></html>
